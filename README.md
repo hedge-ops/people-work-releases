@@ -25,7 +25,7 @@
 
 **System Requirements:**
 
-- macOS 11 or later
+- macOS 15 or later
 - Apple Silicon (M-series) processors only
 
 For more information on People Work DSL, please see the [People Work Docs](https://docs.people-work.io/dsl/overview.html).
