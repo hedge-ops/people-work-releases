@@ -103,26 +103,16 @@ jobs:
           --release-notes-url-prefix "https://github.com/${{ github.repository }}/releases/tag/" \
           releases_temp/
         
-        # Find where appcast.xml was created
-        APPCAST_FILE=$(find . -name "appcast.xml" -type f -print -quit)
-        
-        if [ -z "$APPCAST_FILE" ]; then
-          echo "Error: appcast.xml was not found"
-          exit 1
-        else
-          echo "Found appcast.xml at: $APPCAST_FILE"
-        fi
-        
         # Ensure correct version info in the appcast.xml
         if [[ -n "$VERSION" && -n "$BUILD_NUMBER" ]]; then
           # Fix version in the appcast
-          sed -i '' "s|<title>Version .*</title>|<title>Version $VERSION</title>|g" "$APPCAST_FILE"
-          sed -i '' "s|<sparkle:version>.*</sparkle:version>|<sparkle:version>$BUILD_NUMBER</sparkle:version>|g" "$APPCAST_FILE"
-          sed -i '' "s|<sparkle:shortVersionString>.*</sparkle:shortVersionString>|<sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>|g" "$APPCAST_FILE"
+          sed -i '' "s|<title>Version .*</title>|<title>Version $VERSION</title>|g" releases_temp/appcast.xml
+          sed -i '' "s|<sparkle:version>.*</sparkle:version>|<sparkle:version>$BUILD_NUMBER</sparkle:version>|g" releases_temp/appcast.xml
+          sed -i '' "s|<sparkle:shortVersionString>.*</sparkle:shortVersionString>|<sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>|g" releases_temp/appcast.xml
         fi
         
         # Move the generated appcast to docs folder
-        mv "$APPCAST_FILE" docs/appcast.xml
+        mv releases_temp/appcast.xml docs/appcast.xml
         
         rm -rf releases_temp
         
