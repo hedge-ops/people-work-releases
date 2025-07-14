@@ -117,6 +117,8 @@ jobs:
         rm -rf releases_temp
         
     - name: Commit and push appcast
+      env:
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       run: |
         git config --global user.name "Annie Hedgpeth"
         git config --global user.email "annie@hedge-ops.com"
@@ -127,5 +129,6 @@ jobs:
         else
           git add docs/appcast.xml
           git commit -m "Update appcast for v${VERSION:-latest} (build ${BUILD_NUMBER:-unknown})"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git push
         fi
