@@ -94,7 +94,7 @@ jobs:
           echo "Downloading $filename from $url"
           curl -L -o "releases_temp/$filename" "$url"
         done
-        
+
     - name: Generate appcast
       run: |
         # Generate appcast from the downloaded releases using key from Keychain
@@ -115,20 +115,28 @@ jobs:
         mv releases_temp/appcast.xml docs/appcast.xml
         
         rm -rf releases_temp
-        
-    - name: Commit and push appcast
-      env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+    - name: Check for changes
+      id: check_changes
       run: |
-        git config --global user.name "Annie Hedgpeth"
-        git config --global user.email "annie@hedge-ops.com"
-        
-        # Check if there are changes
         if git diff --quiet docs/appcast.xml; then
           echo "No changes to appcast"
+          echo "changes=false" >> $GITHUB_OUTPUT
         else
-          git add docs/appcast.xml
-          git commit -m "Update appcast for v${VERSION:-latest} (build ${BUILD_NUMBER:-unknown})"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-          git push
+          echo "Changes detected in appcast.xml"
+          echo "changes=true" >> $GITHUB_OUTPUT
         fi
+        
+    - name: Create Pull Request
+      if: steps.check_changes.outputs.changes == 'true'
+      uses: peter-evans/create-pull-request@v7
+      with:
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        commit-message: "Update appcast for v${{ env.VERSION || 'latest' }} (build ${{ env.BUILD_NUMBER || 'unknown' }})"
+        title: "Update appcast for v${{ env.VERSION || 'latest' }}"
+        body: "Automated appcast update for v${{ env.VERSION || 'latest' }} (build ${{ env.BUILD_NUMBER || 'unknown' }})"
+        branch: update-appcast-${{ github.run_id }}
+        delete-branch: true
+        path: .
+        add-paths: |
+          docs/appcast.xml
