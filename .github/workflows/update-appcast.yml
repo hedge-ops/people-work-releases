@@ -61,9 +61,18 @@ jobs:
     
     - name: Download Sparkle tools
       run: |
-        curl -L -o sparkle.tar.xz https://github.com/sparkle-project/Sparkle/releases/latest/download/Sparkle-for-Swift-Package-Manager.tar.xz
-        tar -xf sparkle.tar.xz
+        echo "Downloading Sparkle tools..."
+        curl -L -o sparkle.zip https://github.com/sparkle-project/Sparkle/releases/download/2.7.1/Sparkle-for-Swift-Package-Manager.zip
+        unzip -o sparkle.zip
+        
+        # Check if extraction succeeded and bin directory exists
+        if [ ! -d "bin" ]; then
+          echo "Error: Extraction failed or bin directory not found in archive"
+          exit 1
+        fi
+        
         chmod +x bin/generate_appcast
+        echo "Sparkle tools downloaded and extracted successfully"
         
     - name: Create docs directory if it doesn't exist
       run: mkdir -p docs
