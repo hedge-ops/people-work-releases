@@ -4,6 +4,13 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'App version'
+        required: false
+      build_number:
+        description: 'Build number'
+        required: false
 
 jobs:
   update-appcast:
@@ -15,6 +22,43 @@ jobs:
       with:
         fetch-depth: 0
         
+    - name: Extract version information
+      id: extract_version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        if [[ "${{ github.event_name }}" == "release" ]]; then
+          # Get version from release tag
+          RELEASE_TAG="${{ github.event.release.tag_name }}"
+          VERSION="${RELEASE_TAG#v}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          
+          # Get the build number from release metadata
+          # Check if the release body contains a structured build number indicator
+          RELEASE_BODY="${{ github.event.release.body }}"
+          
+          # Look for a metadata section with the build number in a structured format
+          # Format: <!-- BUILD_NUMBER: 123 -->
+          BUILD_NUMBER="${BASH_REMATCH[1]}"
+          echo "Found build number in metadata: $BUILD_NUMBER"
+        else
+          # For manual workflow dispatch
+          VERSION="${{ github.event.inputs.version }}"
+          BUILD_NUMBER="${{ github.event.inputs.build_number }}"
+          
+          # If build number isn't provided, generate one based on date
+          if [[ -z "$BUILD_NUMBER" ]]; then
+            BUILD_NUMBER=$(date +%Y%m%d%H%M)
+            echo "Generated build number: $BUILD_NUMBER"
+          fi
+        fi
+        
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
+        
+        echo "Using Version: $VERSION"
+        echo "Using Build Number: $BUILD_NUMBER"
+    
     - name: Download Sparkle tools
       run: |
         curl -L -o sparkle.tar.xz https://github.com/sparkle-project/Sparkle/releases/latest/download/Sparkle-for-Swift-Package-Manager.tar.xz
@@ -56,6 +100,14 @@ jobs:
           --release-notes-url-prefix "https://github.com/${{ github.repository }}/releases/tag/" \
           releases_temp/
           
+        # Ensure correct version info in the appcast.xml
+        if [[ -n "$VERSION" && -n "$BUILD_NUMBER" ]]; then
+          # Fix version in the appcast
+          sed -i '' "s|<title>Version .*</title>|<title>Version $VERSION</title>|g" appcast.xml
+          sed -i '' "s|<sparkle:version>.*</sparkle:version>|<sparkle:version>$BUILD_NUMBER</sparkle:version>|g" appcast.xml
+          sed -i '' "s|<sparkle:shortVersionString>.*</sparkle:shortVersionString>|<sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>|g" appcast.xml
+        fi
+        
         # Move the generated appcast to docs folder
         mv appcast.xml docs/appcast.xml
         
@@ -73,6 +125,6 @@ jobs:
           echo "No changes to appcast"
         else
           git add docs/appcast.xml
-          git commit -m "Update appcast for release ${{ github.event.release.tag_name || 'manual trigger' }}"
+          git commit -m "Update appcast for v${VERSION:-latest} (build ${BUILD_NUMBER:-unknown})"
           git push
         fi
