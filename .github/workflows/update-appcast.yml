@@ -97,7 +97,7 @@ jobs:
         
     - name: Generate appcast
       env:
-        SPARKLE_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+        SPARKLE_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
       run: |
         # Create private key file
         echo "$SPARKLE_PRIVATE_KEY" > private_key.pem
