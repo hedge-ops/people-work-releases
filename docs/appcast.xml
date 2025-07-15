@@ -1,21 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
-        <title>People Work Updates</title>
-        <description>Updates for People Work</description>
-        <language>en</language>
+        <title>People Work</title>
         <item>
-            <title>Version 1.0.0</title>
-            <description><![CDATA[
-                Initial release with Sparkle updates
-            ]]></description>
-            <pubDate>Fri, 27 Jun 2025 12:00:00 +0000</pubDate>
-            <sparkle:version>1.0.0</sparkle:version>
-            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
-            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.0.0/your-app.zip"
-                       sparkle:edSignature="YOUR_SIGNATURE_HERE"
-                       length="FILE_SIZE_IN_BYTES"
-                       type="application/octet-stream" />
+            <title>Version 1.0.19</title>
+            <pubDate>Tue, 15 Jul 2025 09:44:17 -0600</pubDate>
+            <sparkle:version>19</sparkle:version>
+            <sparkle:shortVersionString>1.0.19</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/People.Work.dmg" length="10064176" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>
