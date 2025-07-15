@@ -106,10 +106,14 @@ jobs:
           --release-notes-url-prefix "https://github.com/${{ github.repository }}/releases/tag/" \
           releases_temp/
         
+        # Show the initial XML structure
+        echo "Original XML structure:"
+        head -20 releases_temp/appcast.xml
+        
         # Ensure correct version info in the appcast.xml
         if [[ -n "${VERSION}" && -n "${BUILD_NUMBER}" ]]; then
-          # Fix version in the appcast - target item/title specifically
-          sed -i '' "s|<item>[[:space:]]*<title>[^<]*</title>|<item>\\n            <title>Version ${VERSION}</title>|g" releases_temp/appcast.xml
+          # Try a more direct approach targeting just the title in the first item
+          sed -i '' '/<item>/,/<title>/{s/<title>[^<]*<\/title>/<title>Version '"${VERSION}"'<\/title>/;}' releases_temp/appcast.xml
           sed -i '' "s|<sparkle:version>[^<]*</sparkle:version>|<sparkle:version>${BUILD_NUMBER}</sparkle:version>|g" releases_temp/appcast.xml
           sed -i '' "s|<sparkle:shortVersionString>[^<]*</sparkle:shortVersionString>|<sparkle:shortVersionString>${VERSION}</sparkle:shortVersionString>|g" releases_temp/appcast.xml
           
