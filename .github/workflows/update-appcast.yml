@@ -108,14 +108,14 @@ jobs:
         
         # Ensure correct version info in the appcast.xml
         if [[ -n "${VERSION}" && -n "${BUILD_NUMBER}" ]]; then
-          # Fix version in the appcast - use curly braces for variables
-          sed -i '' "s|<title>Version .*</title>|<title>Version ${VERSION}</title>|g" releases_temp/appcast.xml
-          sed -i '' "s|<sparkle:version>.*</sparkle:version>|<sparkle:version>${BUILD_NUMBER}</sparkle:version>|g" releases_temp/appcast.xml
-          sed -i '' "s|<sparkle:shortVersionString>.*</sparkle:shortVersionString>|<sparkle:shortVersionString>${VERSION}</sparkle:shortVersionString>|g" releases_temp/appcast.xml
+          # Fix version in the appcast - target item/title specifically
+          sed -i '' "s|<item>[[:space:]]*<title>[^<]*</title>|<item>\\n            <title>Version ${VERSION}</title>|g" releases_temp/appcast.xml
+          sed -i '' "s|<sparkle:version>[^<]*</sparkle:version>|<sparkle:version>${BUILD_NUMBER}</sparkle:version>|g" releases_temp/appcast.xml
+          sed -i '' "s|<sparkle:shortVersionString>[^<]*</sparkle:shortVersionString>|<sparkle:shortVersionString>${VERSION}</sparkle:shortVersionString>|g" releases_temp/appcast.xml
           
           # Verify the replacement worked
           echo "Version in appcast after replacement:"
-          grep -A1 "<title>" releases_temp/appcast.xml
+          grep -A3 "<item>" releases_temp/appcast.xml
         fi
         
         # Move the generated appcast to docs folder
