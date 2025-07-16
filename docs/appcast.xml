@@ -3,12 +3,12 @@
     <channel>
         <title>People Work</title>
         <item>
-            <title>1.0.20</title>
-            <pubDate>Tue, 15 Jul 2025 16:59:22 -0600</pubDate>
-            <sparkle:version>14</sparkle:version>
-            <sparkle:shortVersionString>1.0.20</sparkle:shortVersionString>
+            <title>1.0.21</title>
+            <pubDate>Tue, 15 Jul 2025 18:35:35 -0600</pubDate>
+            <sparkle:version>21</sparkle:version>
+            <sparkle:shortVersionString>1.0.21</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.0.20/People.Work.dmg" length="16306808" type="application/octet-stream" sparkle:edSignature="ciJJ8F3BG9BI/Suxdsr35ZwO/cM7xYA1PrAqg+dm5y+2/xWKny98QCQACSSFpKar0oKbsdCM2pQ1rYRqweuoAQ=="/>
+            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.0.21/People.Work.dmg" length="16259876" type="application/octet-stream" sparkle:edSignature="y/yt06kKxrr3yLuK9XBWSEDiMMHngqoeh7KYwVnCfIe/LxU9EfhLFe1iS/tzhzvvUqBtdxZX9Ukk0lLox5iHAQ=="/>
         </item>
     </channel>
 </rss>
