@@ -58,6 +58,7 @@ jobs:
       run: |
         echo "Generating appcast for version: $VERSION"
         ./bin/generate_appcast \
+          --account ed25519 \
           --download-url-prefix "https://github.com/${{ github.repository }}/releases/download/v${VERSION}/" \
           releases/
         
