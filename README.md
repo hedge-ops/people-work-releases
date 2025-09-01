@@ -44,6 +44,10 @@ You can also download and install manually:
 4. Drag the People Work application to your Applications folder
 5. Eject the DMG
 
+## Privacy Policy and Terms of Service
+
+By downloading and using People Work, you agree to our [Terms of Service](https://people-work.io/terms) and [Privacy Policy](https://people-work.io/privacy).
+
 ## Quick Start Guide
 
 After installing People Work, you can quickly get started:
