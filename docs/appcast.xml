@@ -4,11 +4,11 @@
         <title>People Work</title>
         <item>
             <title>1.2.1</title>
-            <pubDate>Mon, 20 Oct 2025 10:25:41 -0600</pubDate>
+            <pubDate>Wed, 05 Nov 2025 15:19:01 -0700</pubDate>
             <sparkle:version>30</sparkle:version>
             <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.2.1/People.Work.dmg" length="14860507" type="application/octet-stream" sparkle:edSignature="FWOZTnNPqaFuPCja6pUsZAYi6b3Ia5Fr6jwwt7N5JVCLJs6jQL00/CYJfMQohBNrHZS5Ws8qsMvmd2StXqg5BA=="/>
+            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.2.2-prerelease/People.Work.dmg" length="14860507" type="application/octet-stream" sparkle:edSignature="FWOZTnNPqaFuPCja6pUsZAYi6b3Ia5Fr6jwwt7N5JVCLJs6jQL00/CYJfMQohBNrHZS5Ws8qsMvmd2StXqg5BA=="/>
         </item>
     </channel>
 </rss>
