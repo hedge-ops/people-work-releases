@@ -14,7 +14,7 @@
   <a href="LICENSE">
     <img alt="License" src="https://img.shields.io/badge/license-proprietary-blue" />
   </a>
-  <img alt="Platform" src="https://img.shields.io/badge/platform-macOS-lightgrey" />
+  <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey" />
 </p>
 
 <p align="center">
@@ -23,26 +23,49 @@
 
 ## Downloads & Installation
 
+### macOS
+
 **System Requirements:**
 
 - macOS 14 or later
-- Apple Silicon (M-series) or Intel processors only
+- Apple Silicon (M-series) or Intel processors
 
-For more information on People Work DSL, please see the [People Work Docs](https://docs.people-work.io/dsl/overview.html).
-
-### Homebrew (Recommended)
+#### Homebrew (Recommended)
 
 [Install People Work using Homebrew.](https://github.com/hedge-ops/homebrew-tap)
 
-### Manual Installation
-
-You can also download and install manually:
+#### Manual Installation
 
 1. Find the latest release in the [Releases](https://github.com/hedge-ops/people-work-releases/releases) section
 2. Download the `.dmg` file
 3. Mount the DMG by double-clicking it
 4. Drag the People Work application to your Applications folder
 5. Eject the DMG
+
+### Arch Linux
+
+**System Requirements:**
+
+- x86_64 architecture
+
+#### AUR (Recommended)
+
+Install using your preferred AUR helper:
+
+```bash
+yay -S people-work
+# or
+paru -S people-work
+```
+
+#### Manual Installation
+
+1. Download the `.pkg.tar.zst` file from the [latest release](https://github.com/hedge-ops/people-work-releases/releases/latest)
+2. Install with pacman:
+
+```bash
+sudo pacman -U people-work-*.pkg.tar.zst
+```
 
 ## Privacy Policy and Terms of Service
 
@@ -52,19 +75,19 @@ By downloading and using People Work, you agree to our [Terms of Service](https:
 
 After installing People Work, you can quickly get started:
 
-### Using the User Interface
+### Using the User Interface (macOS)
 
 Get up and running with the People Work UI by following our [Getting Started Guide](https://docs.people-work.io/getting-started/installation.html).
 
-### Using the Domain-Specific Language (DSL)
+### Using the CLI
 
-Start building with the People Work DSL:
+Start using the People Work CLI:
 
 ```bash
-# Example of a basic DSL command
+# Initialize a new workspace
 people init
 
-# Will set up a new workspace.
+# Check your workspace
 people check
 ```
 
