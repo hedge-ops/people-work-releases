@@ -8,6 +8,8 @@
             <sparkle:version>40</sparkle:version>
             <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.6</sparkle:minimumSystemVersion>
+            <sparkle:criticalUpdate />
+            <description sparkle:format="plain-text">Critical update: This release simplifies the email-first authentication, which is a breaking change. You'll need to upgrade before using the app.</description>
             <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.4.0/People.Work.dmg" length="17530574" type="application/octet-stream" sparkle:edSignature="WGlkKh9Zg8Etp8Ahyb2o1DnhGKcAMv1Vug88mHaJ2/sTVQD7zznm8fnTOHwQeAbpIBQzeCN4XV5jdNixYBaRDg=="/>
         </item>
     </channel>
