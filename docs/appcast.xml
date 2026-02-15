@@ -3,14 +3,12 @@
     <channel>
         <title>People Work</title>
         <item>
-            <title>1.4.0</title>
-            <pubDate>Wed, 11 Feb 2026 13:24:29 -0700</pubDate>
-            <sparkle:version>40</sparkle:version>
-            <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
+            <title>1.4.2</title>
+            <pubDate>Sun, 15 Feb 2026 16:10:04 -0700</pubDate>
+            <sparkle:version>42</sparkle:version>
+            <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.6</sparkle:minimumSystemVersion>
-            <sparkle:criticalUpdate />
-            <description sparkle:format="plain-text">Critical update: This release simplifies the email-first authentication, which is a breaking change. You'll need to upgrade before using the app.</description>
-            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.4.0/People.Work.dmg" length="17530574" type="application/octet-stream" sparkle:edSignature="WGlkKh9Zg8Etp8Ahyb2o1DnhGKcAMv1Vug88mHaJ2/sTVQD7zznm8fnTOHwQeAbpIBQzeCN4XV5jdNixYBaRDg=="/>
+            <enclosure url="https://github.com/hedge-ops/people-work-releases/releases/download/v1.4.2/People%20Work.dmg" length="17531087" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>
